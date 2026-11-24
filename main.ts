@@ -37,7 +37,9 @@ const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 // Self-check the gate before writing, so a bad edit can never ship a
 // rejected entry: UTF-8 text, 1–200 characters, not whitespace-only,
-// exactly one line. The roast is 109 characters.
+// exactly one line. The roast is 109 characters; the check counts code
+// points ([...ROAST]) as well as UTF-16 units, so a multi-byte edit can
+// never silently slip past the gate.
 const chars = [...ROAST];
 if (ROAST.length < 1 || ROAST.length > 200 || ROAST.trim() === '' || ROAST.includes('\n')) {
   throw new Error(`entry violates the gate: ${ROAST.length} chars`);
