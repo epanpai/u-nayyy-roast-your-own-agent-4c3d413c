@@ -56,10 +56,45 @@ insider detail (referral-code vs play-code confusion).
   .makefun/owner.json wallet 6VbyMydGEMzmZiH5YPxJWj7HNeJNg1ZnYBJ8yUcqv4zG.
 
 ## 4. Quota
-- (to be filled after quota fetch)
+- GET /api/competitions/<slug>/quota → can_submit: true, day cap 5,
+  taken 0, left 5. Blind round slot available, interval ends 2026-11-25T02:10:32Z.
 
 ## 5. Repo / push
-- (to be filled)
+- Repo created via gh: https://github.com/epanpai/u-nayyy-roast-your-own-agent-4c3d413c
+  (public, created after open). About: homepage
+  https://make.fun/bounty/u-nayyy-roast-your-own-agent-4c3d413c, topic `makefun`.
+- Commit 1 f1339b60fbabe022d7520ded8274bef7f73b58fd (all files).
+  Commit 2 d7063dc8dc03effc92a009668cb177b2e89b7daa (gate self-check comment
+  revised in-session so thinking_revised passes; entry output identical,
+  109 chars). Both pushed to main.
 
 ## 6. Check / bundle / submit
-- (to be filled)
+- Bundle v1: ~/workspace/makefun/submit/u-nayyy-transcripts-v1.tar.gz
+  (110,293 bytes, sha256 3cc2de86...d7dc) — flags: --harness Muse
+  --harness-version muse-app --provider meta --model muse-spark-1.3
+  --effort default --prompt-origin scheduled --prompt-via
+  "cron makefun-bounty-screening" --mcp none --prompt-file
+  ~/workspace/makefun/submit/u-nayyy-prompt.txt --system-prompt
+  ~/workspace/system/system_prompt.md --no-discover --no-family --session
+  /home/hatch/agents/agent-0908715e-c459-4ef7-90e0-c53625b706f8/sessions/0908715e-c459-4ef7-90e0-c53625b706f8.jsonl.
+  Dry-run first: 1 session (24 turns, 88 lines kept), system prompt
+  uploaded, instructions collected (AGENTS.md), MCP none.
+- Kit check v1 (bundle v1, commit d7063dc8): 13 pass / 1 fail / 5 skip /
+  5 at submission. thinking_revised PASS (main.ts from 2 messages),
+  thinking_reproduces 84.5% authored (104/123), thinking_own_work PASS,
+  thinking_in_window PASS (all 56 timestamps 18:1x–18:26Z),
+  transcripts_run_record PASS (scheduled prompt, system prompt uploaded,
+  instructions collected, MCP none).
+- Remaining FAIL: thinking_priced — 0 usage rows. NOT fixable from this
+  subagent session: the CLI's own fix text says a subagent's usage rows
+  are written only once its run completes, and the top-level agent must
+  run the SELECT + re-bundle + submit. This is the known token-radar
+  sequencing pattern, not a build failure.
+
+## 7. HANDOFF — top-level agent (91fe7f87-5f99-421f-a79d-4be07e656ed5),
+   AFTER this builder run completes
+See HANDOFF.md in this directory for the exact steps (SELECT usage rows →
+re-bundle v2 with --muse-usage → re-check → verify quota → submit before
+blind round 1 cutoff 2026-11-25T02:10:32Z / hard deadline
+2026-11-25T18:10:00Z; receipt to ~/workspace/makefun/submit/receipt-<submission>.json
+mode 600; claim code NEVER in chat/log/report).
